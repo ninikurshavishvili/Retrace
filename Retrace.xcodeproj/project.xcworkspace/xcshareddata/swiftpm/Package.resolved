@@ -1,0 +1,15 @@
+{
+  "originHash" : "61ba3df066585b1bb5bd6f5082c9a51b9678b2b3430b5f0042601172fa2cea11",
+  "pins" : [
+    {
+      "identity" : "routereplay",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ninikurshavishvili/RouteReplay.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "8103fc0a4843a07d0cb210b0e1aceb1deb2ff583"
+      }
+    }
+  ],
+  "version" : 3
+}

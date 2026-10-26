@@ -6,20 +6,59 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		171DE8E8308F62C600977137 /* RouteReplay in Frameworks */ = {isa = PBXBuildFile; productRef = 171DE8E7308F62C600977137 /* RouteReplay */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		171DE90130A0000000977137 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 171DE8D0308F561F00977137 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 171DE8D7308F561F00977137;
+			remoteInfo = Retrace;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		171DE8D8308F561F00977137 /* Retrace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Retrace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		171DE90930A0000000977137 /* RetraceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RetraceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		171DE90C30A0000000977137 /* Exceptions for "Retrace" folder in "Retrace" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 171DE8D7308F561F00977137 /* Retrace */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		171DE8DA308F561F00977137 /* Retrace */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				171DE90C30A0000000977137 /* Exceptions for "Retrace" folder in "Retrace" target */,
+			);
 			path = Retrace;
+			sourceTree = "<group>";
+		};
+		171DE90830A0000000977137 /* RetraceTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = RetraceTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		171DE8D5308F561F00977137 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				171DE8E8308F62C600977137 /* RouteReplay in Frameworks */,
+			);
+		};
+		171DE90630A0000000977137 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
 			);
@@ -31,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				171DE8DA308F561F00977137 /* Retrace */,
+				171DE90830A0000000977137 /* RetraceTests */,
 				171DE8D9308F561F00977137 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -39,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				171DE8D8308F561F00977137 /* Retrace.app */,
+				171DE90930A0000000977137 /* RetraceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,9 +101,33 @@
 				171DE8DA308F561F00977137 /* Retrace */,
 			);
 			name = Retrace;
+			packageProductDependencies = (
+				171DE8E7308F62C600977137 /* RouteReplay */,
+			);
 			productName = Retrace;
 			productReference = 171DE8D8308F561F00977137 /* Retrace.app */;
 			productType = "com.apple.product-type.application";
+		};
+		171DE90330A0000000977137 /* RetraceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 171DE90430A0000000977137 /* Build configuration list for PBXNativeTarget "RetraceTests" */;
+			buildPhases = (
+				171DE90530A0000000977137 /* Sources */,
+				171DE90630A0000000977137 /* Frameworks */,
+				171DE90730A0000000977137 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				171DE90230A0000000977137 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				171DE90830A0000000977137 /* RetraceTests */,
+			);
+			name = RetraceTests;
+			productName = RetraceTests;
+			productReference = 171DE90930A0000000977137 /* RetraceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -77,6 +142,10 @@
 					171DE8D7308F561F00977137 = {
 						CreatedOnToolsVersion = 27.0;
 					};
+					171DE90330A0000000977137 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = 171DE8D7308F561F00977137;
+					};
 				};
 			};
 			buildConfigurationList = 171DE8D3308F561F00977137 /* Build configuration list for PBXProject "Retrace" */;
@@ -88,18 +157,27 @@
 			);
 			mainGroup = 171DE8CF308F561F00977137;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				171DE8E6308F62C600977137 /* XCRemoteSwiftPackageReference "RouteReplay" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 171DE8D9308F561F00977137 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				171DE8D7308F561F00977137 /* Retrace */,
+				171DE90330A0000000977137 /* RetraceTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		171DE8D6308F561F00977137 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		171DE90730A0000000977137 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -112,7 +190,20 @@
 			files = (
 			);
 		};
+		171DE90530A0000000977137 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		171DE90230A0000000977137 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 171DE8D7308F561F00977137 /* Retrace */;
+			targetProxy = 171DE90130A0000000977137 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		171DE8E1308F562200977137 /* Debug configuration for PBXProject "Retrace" */ = {
@@ -167,7 +258,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -224,7 +315,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -241,27 +332,31 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BWM868S4PF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Retrace/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Retrace uses your location while you record a walk, so you can replay it later.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "WED-14.Retrace";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ninikurshavishvili.Retrace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -272,27 +367,73 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BWM868S4PF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Retrace/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Retrace uses your location while you record a walk, so you can replay it later.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "WED-14.Retrace";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ninikurshavishvili.Retrace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		171DE90A30A0000000977137 /* Debug configuration for PBXNativeTarget "RetraceTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ninikurshavishvili.RetraceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Retrace.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Retrace";
+			};
+			name = Debug;
+		};
+		171DE90B30A0000000977137 /* Release configuration for PBXNativeTarget "RetraceTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ninikurshavishvili.RetraceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Retrace.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Retrace";
 			};
 			name = Release;
 		};
@@ -315,7 +456,34 @@
 			);
 			defaultConfigurationName = Release;
 		};
+		171DE90430A0000000977137 /* Build configuration list for PBXNativeTarget "RetraceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				171DE90A30A0000000977137 /* Debug configuration for PBXNativeTarget "RetraceTests" */,
+				171DE90B30A0000000977137 /* Release configuration for PBXNativeTarget "RetraceTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		171DE8E6308F62C600977137 /* XCRemoteSwiftPackageReference "RouteReplay" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninikurshavishvili/RouteReplay.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		171DE8E7308F62C600977137 /* RouteReplay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 171DE8E6308F62C600977137 /* XCRemoteSwiftPackageReference "RouteReplay" */;
+			productName = RouteReplay;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 171DE8D0308F561F00977137 /* Project object */;
 	validationLevel = 1;

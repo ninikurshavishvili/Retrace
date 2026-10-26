@@ -1,0 +1,140 @@
+import RouteReplay
+import SwiftUI
+import UniformTypeIdentifiers
+
+/// The root screen: the sample, then the recorded and imported routes, newest first.
+struct RoutesView: View {
+    @Environment(RouteStore.self) private var store
+    @State private var isImporting = false
+    @State private var presentedError: RetraceError?
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    ForEach(store.routes) { route in
+                        RouteRow(route: route)
+                            .contextMenu { menuItems(for: route) }
+                            .swipeActions {
+                                if !route.isSample {
+                                    deleteButton(for: route)
+                                }
+                            }
+                    }
+                } footer: {
+                    Text("Record a walk or import a GPX file.")
+                }
+            }
+            .animation(.default, value: store.routes)
+            .navigationTitle("Routes")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    addMenu
+                }
+            }
+            .fileImporter(isPresented: $isImporting, allowedContentTypes: [.gpx, .json]) { result in
+                importRoute(from: result)
+            }
+            .alert(
+                presentedError?.title ?? "",
+                isPresented: isShowingError,
+                presenting: presentedError
+            ) { _ in
+                Button("OK") {}
+            } message: { error in
+                Text(error.errorDescription ?? "")
+            }
+        }
+        // On the stack rather than the list, so it runs once and not every time a pushed screen pops.
+        .task {
+            do throws(RetraceError) {
+                try store.load()
+            } catch {
+                presentedError = error
+            }
+        }
+    }
+
+    private var addMenu: some View {
+        Menu {
+            // Recording needs RouteReplay's RouteRecorder, which arrives in milestone M3.
+            Button("Record a Walk", systemImage: "record.circle") {}
+                .disabled(true)
+            Button("Import GPX or JSON", systemImage: "square.and.arrow.down") {
+                isImporting = true
+            }
+        } label: {
+            Label("Add Route", systemImage: "plus")
+        }
+    }
+
+    @ViewBuilder
+    private func menuItems(for route: SavedRoute) -> some View {
+        // For now the list is the only place to export from; the Replay screen gets a Share menu in M2.
+        Section {
+            ShareLink(
+                item: RouteFile(route: route.route, format: .gpx),
+                preview: SharePreview(route.name)
+            ) {
+                Label("Export as GPX", systemImage: "square.and.arrow.up")
+            }
+            ShareLink(
+                item: RouteFile(route: route.route, format: .json),
+                preview: SharePreview(route.name)
+            ) {
+                Label("Export as JSON", systemImage: "square.and.arrow.up")
+            }
+        }
+        if !route.isSample {
+            Section {
+                deleteButton(for: route)
+            }
+        }
+    }
+
+    private func deleteButton(for route: SavedRoute) -> some View {
+        Button("Delete", systemImage: "trash", role: .destructive) {
+            do throws(RetraceError) {
+                try store.delete(route)
+            } catch {
+                presentedError = error
+            }
+        }
+    }
+
+    private var isShowingError: Binding<Bool> {
+        Binding {
+            presentedError != nil
+        } set: { isShowing in
+            if !isShowing { presentedError = nil }
+        }
+    }
+
+    private func importRoute(from result: Result<URL, any Error>) {
+        switch result {
+        case .success(let url):
+            do throws(RetraceError) {
+                try store.importFile(at: url)
+            } catch {
+                presentedError = error
+            }
+        case .failure(let error):
+            presentedError = .unreadableFile(error.localizedDescription)
+        }
+    }
+}
+
+#Preview("Routes") {
+    RoutesView()
+        .environment(RouteStore.preview())
+}
+
+#Preview("Only the sample") {
+    RoutesView()
+        .environment(RouteStore.preview(withRoutes: false))
+}
+
+#Preview("Load error") {
+    RoutesView()
+        .environment(RouteStore.previewFailingToLoad())
+}
