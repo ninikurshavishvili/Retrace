@@ -1,5 +1,7 @@
+import CoreLocation
 import Foundation
 import RouteReplay
+import SwiftUI
 
 // Previews compile in every configuration, so this file isn't wrapped in `#if DEBUG`.
 // It's a few small values, and nothing outside previews uses them.
@@ -51,5 +53,16 @@ extension RouteStore {
     /// A store whose folder can't be created, so `load()` fails and the view shows its error alert.
     static func previewFailingToLoad() -> RouteStore {
         RouteStore(folder: RouteFolder(url: URL(filePath: "/dev/null/Routes")), sample: .bundledSample)
+    }
+}
+
+extension View {
+    /// Location for previews: a permission fixed at `status`, and Live replaced by a replay of the
+    /// sample, so no preview ever needs real GPS or shows the system prompt.
+    func previewLocation(_ status: CLAuthorizationStatus = .authorizedWhenInUse) -> some View {
+        environment(LocationPermission(fixedStatus: status))
+            .environment(\.makeLiveProvider, Factory("Sample replay") {
+                ReplayLocationProvider(route: .bundledSample, speed: 10, loop: true)
+            })
     }
 }

@@ -21,6 +21,11 @@ nonisolated struct SavedRoute: Identifiable, Hashable {
 
     var name: String { route.name }
 
+    /// The name, or "Untitled Route" for a route saved without one.
+    var displayName: String {
+        name.isEmpty ? String(localized: "Untitled Route") : name
+    }
+
     static let sampleID = UUID(uuidString: "5A3B1E00-0000-4000-8000-000000000001")!
 
     static func == (lhs: SavedRoute, rhs: SavedRoute) -> Bool {

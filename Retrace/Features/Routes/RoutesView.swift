@@ -13,13 +13,15 @@ struct RoutesView: View {
             List {
                 Section {
                     ForEach(store.routes) { route in
-                        RouteRow(route: route)
-                            .contextMenu { menuItems(for: route) }
-                            .swipeActions {
-                                if !route.isSample {
-                                    deleteButton(for: route)
-                                }
+                        NavigationLink(value: route) {
+                            RouteRow(route: route)
+                        }
+                        .contextMenu { menuItems(for: route) }
+                        .swipeActions {
+                            if !route.isSample {
+                                deleteButton(for: route)
                             }
+                        }
                     }
                 } footer: {
                     Text("Record a walk or import a GPX file.")
@@ -27,6 +29,9 @@ struct RoutesView: View {
             }
             .animation(.default, value: store.routes)
             .navigationTitle("Routes")
+            .navigationDestination(for: SavedRoute.self) { route in
+                ReplayView(route: route)
+            }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     addMenu
@@ -70,20 +75,8 @@ struct RoutesView: View {
 
     @ViewBuilder
     private func menuItems(for route: SavedRoute) -> some View {
-        // For now the list is the only place to export from; the Replay screen gets a Share menu in M2.
         Section {
-            ShareLink(
-                item: RouteFile(route: route.route, format: .gpx),
-                preview: SharePreview(route.name)
-            ) {
-                Label("Export as GPX", systemImage: "square.and.arrow.up")
-            }
-            ShareLink(
-                item: RouteFile(route: route.route, format: .json),
-                preview: SharePreview(route.name)
-            ) {
-                Label("Export as JSON", systemImage: "square.and.arrow.up")
-            }
+            ExportLinks(route: route)
         }
         if !route.isSample {
             Section {
@@ -127,14 +120,17 @@ struct RoutesView: View {
 #Preview("Routes") {
     RoutesView()
         .environment(RouteStore.preview())
+        .previewLocation()
 }
 
 #Preview("Only the sample") {
     RoutesView()
         .environment(RouteStore.preview(withRoutes: false))
+        .previewLocation()
 }
 
 #Preview("Load error") {
     RoutesView()
         .environment(RouteStore.previewFailingToLoad())
+        .previewLocation()
 }

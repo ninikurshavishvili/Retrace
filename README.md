@@ -12,7 +12,7 @@ Retrace is the companion iOS app for [RouteReplay](https://github.com/ninikursha
 | --- | --- | --- |
 | M0 | Project setup, design tokens, route list with the bundled sample | Done |
 | M1 | Saved routes, import `.gpx` / `.json`, delete, export through the share sheet | Done |
-| M2 | Replay screen, tracker panel, Live / Replay switch | Waits for RouteReplay's `RouteDebugMap` |
+| M2 | Replay screen, tracker panel, Live / Replay switch | In progress: the tracker works; the map waits for RouteReplay's `RouteDebugMap` |
 | M3 | Record a walk, then name and save it | Waits for RouteReplay's `RouteRecorder` |
 | M4 | App icon, accessibility pass, screenshots, this README | — |
 
@@ -45,7 +45,7 @@ Retrace/
 ├── DesignSystem/   Theme tokens, Badge, RouteThumbnail
 ├── Core/           RouteFolder (file I/O), RouteStats, RouteExporter, UTType+GPX, RetraceError
 ├── Models/         RouteStore, SavedRoute
-├── Features/       Routes (more screens arrive in M2 and M3)
+├── Features/       Routes, Replay (Record arrives in M3)
 ├── Resources/      Assets, SampleWalk.gpx
 └── Preview Content/ Preview data: a store in a temporary folder
 ```
