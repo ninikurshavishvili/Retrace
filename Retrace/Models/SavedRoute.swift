@@ -36,19 +36,3 @@ nonisolated struct SavedRoute: Identifiable, Hashable {
         hasher.combine(id)
     }
 }
-
-extension RecordedRoute {
-    /// A walk along Rustaveli Avenue in Tbilisi, from `SampleWalk.gpx` in the app bundle.
-    ///
-    /// The file is a copy of RouteReplay's test fixture `RustaveliWalk.gpx`. Replace it with
-    /// `RecordedRoute.sample` once the package ships one.
-    nonisolated static let bundledSample: RecordedRoute = {
-        guard
-            let url = Bundle.main.url(forResource: "SampleWalk", withExtension: "gpx"),
-            let route = try? RecordedRoute(contentsOf: url)
-        else {
-            preconditionFailure("SampleWalk.gpx is missing from the app bundle or can't be read.")
-        }
-        return route
-    }()
-}

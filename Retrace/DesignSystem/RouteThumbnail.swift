@@ -67,7 +67,7 @@ nonisolated struct RouteShape: Shape {
 
 #Preview(traits: .sizeThatFitsLayout) {
     HStack(spacing: Theme.Spacing.small) {
-        RouteThumbnail(route: .bundledSample)
+        RouteThumbnail(route: .sample)
         RouteThumbnail(route: .previewLoop)
         RouteThumbnail(route: .previewSinglePoint)
     }

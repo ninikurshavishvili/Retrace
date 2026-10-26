@@ -33,7 +33,7 @@ extension RecordedRoute {
 }
 
 extension SavedRoute {
-    static let previewSample = SavedRoute(id: SavedRoute.sampleID, route: .bundledSample, isSample: true)
+    static let previewSample = SavedRoute(id: SavedRoute.sampleID, route: .sample, isSample: true)
 }
 
 extension RouteStore {
@@ -42,7 +42,7 @@ extension RouteStore {
         let folder = RouteFolder(
             url: .temporaryDirectory.appending(path: "RetracePreview-\(UUID().uuidString)", directoryHint: .isDirectory)
         )
-        let store = RouteStore(folder: folder, sample: .bundledSample)
+        let store = RouteStore(folder: folder, sample: .sample)
         if withRoutes {
             _ = try? store.add(.previewLoop)
             _ = try? store.add(.previewSinglePoint)
@@ -52,7 +52,7 @@ extension RouteStore {
 
     /// A store whose folder can't be created, so `load()` fails and the view shows its error alert.
     static func previewFailingToLoad() -> RouteStore {
-        RouteStore(folder: RouteFolder(url: URL(filePath: "/dev/null/Routes")), sample: .bundledSample)
+        RouteStore(folder: RouteFolder(url: URL(filePath: "/dev/null/Routes")), sample: .sample)
     }
 }
 
@@ -62,7 +62,7 @@ extension View {
     func previewLocation(_ status: CLAuthorizationStatus = .authorizedWhenInUse) -> some View {
         environment(LocationPermission(fixedStatus: status))
             .environment(\.makeLiveProvider, Factory("Sample replay") {
-                ReplayLocationProvider(route: .bundledSample, speed: 10, loop: true)
+                ReplayLocationProvider(route: .sample, speed: 10, loop: true)
             })
     }
 }

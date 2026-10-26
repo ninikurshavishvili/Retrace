@@ -15,3 +15,8 @@ Anything outside the v1 scope in APP_PLAN.md §3 goes here, so v1 can ship.
 - Open `.gpx` and `.json` files sent from other apps ("Open in Retrace") by declaring document types.
 - Draw a start dot and an end dot on route thumbnails, like the app icon.
 - Thin out very long routes before drawing their thumbnails.
+
+## For RouteReplay
+- `RouteDebugMap` draws its line and dot in fixed blue. Using the tint would let Retrace show its Trail accent.
+- `RouteDebugMap`'s "n / total" counts the points it received, so it trails the real playhead when the map starts listening after another consumer (the tracker panel shows a few more updates). Showing the player's own index would fix it.
+- When a looping replay starts over, a tracker sees a jump from the last point back to the first, which adds about a route's length to its distance.

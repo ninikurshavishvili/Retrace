@@ -128,25 +128,25 @@ struct TrackerPanel: View {
 }
 
 #Preview("Replay") {
-    TrackerPanel(player: ReplayLocationProvider(route: .bundledSample, speed: 10, loop: true))
+    TrackerPanel(player: ReplayLocationProvider(route: .sample, speed: 10, loop: true))
         .padding()
         .previewLocation()
 }
 
 #Preview("Live, as a replay") {
-    TrackerPanel(player: ReplayLocationProvider(route: .bundledSample, speed: 10, loop: true), source: .live)
+    TrackerPanel(player: ReplayLocationProvider(route: .sample, speed: 10, loop: true), source: .live)
         .padding()
         .previewLocation()
 }
 
 #Preview("Live, not asked yet") {
-    TrackerPanel(player: ReplayLocationProvider(route: .bundledSample), source: .live)
+    TrackerPanel(player: ReplayLocationProvider(route: .sample), source: .live)
         .padding()
         .previewLocation(.notDetermined)
 }
 
 #Preview("Live, denied") {
-    TrackerPanel(player: ReplayLocationProvider(route: .bundledSample), source: .live)
+    TrackerPanel(player: ReplayLocationProvider(route: .sample), source: .live)
         .padding()
         .previewLocation(.denied)
 }

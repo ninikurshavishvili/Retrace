@@ -1,5 +1,3 @@
-import CoreLocation
-import MapKit
 import RouteReplay
 import SwiftUI
 
@@ -19,7 +17,7 @@ struct ReplayView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                map
+                RouteDebugMap(player: player)
                     .containerRelativeFrame(.vertical) { height, _ in height * 0.55 }
                 TrackerPanel(player: player)
                     .padding(Theme.Spacing.medium)
@@ -37,21 +35,6 @@ struct ReplayView: View {
                     Label("Share", systemImage: "square.and.arrow.up")
                 }
             }
-        }
-    }
-
-    // Draws the route until RouteReplay ships RouteDebugMap(player:), which takes this place
-    // and adds the moving dot and the play, restart and speed controls.
-    private var map: some View {
-        let coordinates = route.route.points.map {
-            CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude)
-        }
-        let bounds = MKPolyline(coordinates: coordinates, count: coordinates.count).boundingMapRect
-        // A margin around the route, and at least a few hundred meters for very short routes.
-        let margin = max(bounds.width, bounds.height) * 0.15 + 300
-        return Map(initialPosition: .rect(bounds.insetBy(dx: -margin, dy: -margin))) {
-            MapPolyline(coordinates: coordinates)
-                .stroke(Color.accentColor, lineWidth: 5)
         }
     }
 }

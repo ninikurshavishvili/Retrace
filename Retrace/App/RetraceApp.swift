@@ -3,7 +3,7 @@ import SwiftUI
 
 @main
 struct RetraceApp: App {
-    @State private var store = RouteStore(folder: .documents, sample: .bundledSample)
+    @State private var store = RouteStore(folder: .documents, sample: .sample)
     @State private var permission = LocationPermission()
 
     var body: some Scene {
