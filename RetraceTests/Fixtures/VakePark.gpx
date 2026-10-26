@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- An Xcode location simulation file: waypoints with times, no track. -->
+<gpx version="1.1" creator="Xcode">
+    <wpt lat="41.7090" lon="44.7440">
+        <name>Vake Park gate</name>
+        <time>2026-10-20T09:00:00Z</time>
+    </wpt>
+    <wpt lat="41.7098" lon="44.7452">
+        <time>2026-10-20T09:00:30Z</time>
+    </wpt>
+    <wpt lat="41.7107" lon="44.7465">
+        <time>2026-10-20T09:01:00Z</time>
+    </wpt>
+    <wpt lat="41.7116" lon="44.7478">
+        <time>2026-10-20T09:01:30Z</time>
+    </wpt>
+</gpx>
