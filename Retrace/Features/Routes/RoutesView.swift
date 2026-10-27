@@ -5,7 +5,10 @@ import UniformTypeIdentifiers
 /// The root screen: the sample, then the recorded and imported routes, newest first.
 struct RoutesView: View {
     @Environment(RouteStore.self) private var store
+    @Environment(\.makeRecorder) private var makeRecorder
     @State private var isImporting = false
+    // The Record screen is open while this is set; closing it releases the recorder, which stops GPS.
+    @State private var recording: RecordModel?
     @State private var presentedError: RetraceError?
 
     var body: some View {
@@ -40,6 +43,9 @@ struct RoutesView: View {
             .fileImporter(isPresented: $isImporting, allowedContentTypes: [.gpx, .json]) { result in
                 importRoute(from: result)
             }
+            .fullScreenCover(item: $recording) { model in
+                RecordView(model: model)
+            }
             .alert(
                 presentedError?.title ?? "",
                 isPresented: isShowingError,
@@ -62,9 +68,9 @@ struct RoutesView: View {
 
     private var addMenu: some View {
         Menu {
-            // Recording needs RouteReplay's RouteRecorder, which arrives in milestone M3.
-            Button("Record a Walk", systemImage: "record.circle") {}
-                .disabled(true)
+            Button("Record a Walk", systemImage: "record.circle") {
+                recording = RecordModel(recorder: makeRecorder())
+            }
             Button("Import GPX or JSON", systemImage: "square.and.arrow.down") {
                 isImporting = true
             }

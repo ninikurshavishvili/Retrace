@@ -15,6 +15,7 @@ Anything outside the v1 scope in APP_PLAN.md §3 goes here, so v1 can ship.
 - Open `.gpx` and `.json` files sent from other apps ("Open in Retrace") by declaring document types.
 - Draw a start dot and an end dot on route thumbnails, like the app icon.
 - Thin out very long routes before drawing their thumbnails.
+- Start the Record map zoomed in on the walker. Following the user's location keeps MapKit's default zoom, which shows a few kilometers.
 
 ## For RouteReplay
 - `RouteDebugMap` draws its line and dot in fixed blue. Using the tint would let Retrace show its Trail accent.

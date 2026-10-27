@@ -7,6 +7,11 @@ extension EnvironmentValues {
     /// The app uses real GPS. Previews replace it with a replay, so even Live needs no
     /// permission there, and no app code changes.
     @Entry var makeLiveProvider: Factory<any LocationProvider> = Factory("Live GPS") { LiveLocationProvider() }
+
+    /// Makes the recorder behind the Record screen.
+    ///
+    /// The app records real GPS. Previews and tests record a replay instead.
+    @Entry var makeRecorder: Factory<RouteRecorder> = Factory("Live GPS recorder") { RouteRecorder() }
 }
 
 /// Makes a value on demand, such as a location provider, and can be compared, so it can live in

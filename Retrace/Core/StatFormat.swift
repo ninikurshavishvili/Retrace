@@ -30,6 +30,13 @@ nonisolated enum StatFormat {
             ))
     }
 
+    /// "±5 m", the radius a position could be off by.
+    static func accuracy(_ meters: CLLocationAccuracy) -> String {
+        let radius = Measurement(value: meters.rounded(), unit: UnitLength.meters)
+            .formatted(.measurement(width: .abbreviated, usage: .asProvided))
+        return String(localized: "±\(radius)")
+    }
+
     /// "41.69340, 44.80150", always with a period and five decimals (about a meter).
     static func coordinate(_ coordinate: CLLocationCoordinate2D) -> String {
         String(format: "%.5f, %.5f", coordinate.latitude, coordinate.longitude)

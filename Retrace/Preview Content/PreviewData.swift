@@ -56,13 +56,31 @@ extension RouteStore {
     }
 }
 
+extension RecordModel {
+    /// A model that records a 10x replay of the sample instead of GPS.
+    static var preview: RecordModel {
+        RecordModel(recorder: .previewReplay)
+    }
+}
+
+extension RouteRecorder {
+    /// A recorder fed by a 10x replay of the sample, so recording in a preview needs no GPS.
+    static var previewReplay: RouteRecorder {
+        RouteRecorder(provider: ReplayLocationProvider(route: .sample, speed: 10))
+    }
+}
+
 extension View {
-    /// Location for previews: a permission fixed at `status`, and Live replaced by a replay of the
-    /// sample, so no preview ever needs real GPS or shows the system prompt.
-    func previewLocation(_ status: CLAuthorizationStatus = .authorizedWhenInUse) -> some View {
-        environment(LocationPermission(fixedStatus: status))
+    /// Location for previews: a permission fixed at `status` and `accuracy`, and Live and recording
+    /// replaced by replays of the sample, so no preview ever needs real GPS or shows the system prompt.
+    func previewLocation(
+        _ status: CLAuthorizationStatus = .authorizedWhenInUse,
+        accuracy: CLAccuracyAuthorization = .fullAccuracy
+    ) -> some View {
+        environment(LocationPermission(fixedStatus: status, accuracy: accuracy))
             .environment(\.makeLiveProvider, Factory("Sample replay") {
                 ReplayLocationProvider(route: .sample, speed: 10, loop: true)
             })
+            .environment(\.makeRecorder, Factory("Sample replay recorder") { .previewReplay })
     }
 }
