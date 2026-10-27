@@ -17,7 +17,9 @@ nonisolated struct RouteStats: Equatable {
     }
 
     init(_ route: RecordedRoute) {
-        let locations = route.points.map { CLLocation(latitude: $0.latitude, longitude: $0.longitude) }
+        // The same locations a replay sends, altitude included, so Core Location measures them
+        // exactly as it does for an app tracking the replay.
+        let locations = route.points.map { $0.makeLocation() }
         let meters = zip(locations, locations.dropFirst()).reduce(0) { total, pair in
             total + pair.1.distance(from: pair.0)
         }
@@ -32,13 +34,11 @@ nonisolated struct RouteStats: Equatable {
 
     /// The distance in the user's locale, such as "1.2 km" or "0.7 mi".
     var formattedDistance: String {
-        distance.formatted(.measurement(width: .abbreviated, usage: .road))
+        StatFormat.distance(distance.converted(to: .meters).value)
     }
 
     /// The duration with at most two units, such as "14 min, 5 sec" or "1 hr, 2 min".
     var formattedDuration: String {
-        Duration.seconds(duration).formatted(
-            .units(allowed: [.hours, .minutes, .seconds], width: .abbreviated, maximumUnitCount: 2)
-        )
+        StatFormat.duration(duration)
     }
 }

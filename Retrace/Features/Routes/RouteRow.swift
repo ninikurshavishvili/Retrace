@@ -12,7 +12,7 @@ struct RouteRow: View {
             VStack(alignment: .leading, spacing: Theme.Spacing.xxSmall) {
                 // Baseline alignment keeps the badge on the first line when a long name wraps.
                 HStack(alignment: .firstTextBaseline, spacing: Theme.Spacing.xSmall) {
-                    Text(route.name.isEmpty ? String(localized: "Untitled Route") : route.name)
+                    Text(route.displayName)
                         .font(.headline)
                         .lineLimit(2)
                     if route.isSample {
